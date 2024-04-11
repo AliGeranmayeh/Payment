@@ -1,10 +1,17 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticationController;
+use App\Http\Controllers\UserSide\DemandsController;
 
 
 Route::post('register', [AuthenticationController::class , 'register'])->name('register');
 Route::post('login', [AuthenticationController::class , 'login'])->name('login');
-Route::get('logout', [AuthenticationController::class , 'logout'])->middleware('auth:sanctum')->name('logout');
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('logout', [AuthenticationController::class , 'logout'])->name('logout');
+
+    Route::get('demands', [DemandsController::class , 'index'])->name('demands.index');
+    Route::post('demands', [DemandsController::class , 'store'])->name('demands.store');
+    Route::get('demands/{demand}', [DemandsController::class , 'show'])->name('demands.show');
+});
