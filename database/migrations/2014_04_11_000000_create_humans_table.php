@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('humans', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('national_code');
+            $table->string('national_code')->unique();;
             $table->timestamps();
         });
     }
