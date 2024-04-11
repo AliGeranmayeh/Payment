@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
             HumanSeeder::class,
             AdminSeeder::class,
             BankSeeder::class,
-            AdminBankAccountSeeder::class
+            AdminBankAccountSeeder::class,
+            CategorySeeder::class
         ]);
     }
 }
