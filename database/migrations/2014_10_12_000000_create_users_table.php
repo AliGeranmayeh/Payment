@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('email')->unique();
             $table->string('password');
-            $table->foreignIdFor(Human::class);
+            $table->foreignIdFor(Human::class)->constrained()->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
         });
