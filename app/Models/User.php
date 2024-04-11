@@ -48,4 +48,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Human::class);
     }
+
+    public function isAdmin():bool
+    {
+        return  $this->email == 'admin@admin.com';
+    }
 }
