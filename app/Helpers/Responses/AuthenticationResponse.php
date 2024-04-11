@@ -17,4 +17,14 @@ class AuthenticationResponse
             response()->json(['message' => 'Registered successfully'], Response::HTTP_OK) :
             response()->json(['message' => 'Failed to register user'], Response::HTTP_INTERNAL_SERVER_ERROR);
     }
+
+
+    public static function login(bool $loggedInFlag)
+    {
+        return $loggedInFlag ? 
+            response()->json([
+            'access_token' => auth()->user()->createToken('API Token')->plainTextToken],
+            Response::HTTP_OK) :
+            response()->json(['message' => 'Invalid Credentials'], Response::HTTP_UNAUTHORIZED);
+    }
 }

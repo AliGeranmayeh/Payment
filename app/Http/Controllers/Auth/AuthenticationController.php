@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\RegisterRequest;
 use App\Helpers\DB\UserRepository;
 use App\Helpers\Responses\AuthenticationResponse;
 use App\Http\Requests\Auth\LoginRequest;
+use Illuminate\Support\Facades\Auth;
 
 class AuthenticationController extends Controller
 {
@@ -19,11 +20,19 @@ class AuthenticationController extends Controller
 
     public function login(LoginRequest $request)
     {
-        # code...
+        $isLoggedIn = $this->checkLoginCredentials($request->validated());
+
+        return AuthenticationResponse::login($isLoggedIn);
     }
 
     public function logout()
     {
         # code...
+    }
+
+
+    private function checkLoginCredentials(array $loginData)
+    {
+        return Auth::attempt($loginData) ? true : false;
     }
 }
