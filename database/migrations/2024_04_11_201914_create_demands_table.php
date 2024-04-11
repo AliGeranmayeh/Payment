@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('cost')->unsigned();
             $table->string('shaba',26)->unique();
             $table->string('file');
-            $table->enum('status',['pending','accepted','declined','paid']);
+            $table->enum('status',['pending','accepted','declined','paid'])->default('pending');
             $table->timestamps();
         });
     }
