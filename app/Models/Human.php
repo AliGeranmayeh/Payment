@@ -15,4 +15,9 @@ class Human extends Model
         'name',
         'national_code'
     ];
+
+    public function user(): HasOne
+    {
+        return $this->hasOne(User::class);
+    }
 }
