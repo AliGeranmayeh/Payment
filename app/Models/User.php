@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -47,6 +48,12 @@ class User extends Authenticatable
     public function human(): BelongsTo
     {
         return $this->belongsTo(Human::class);
+    }
+
+
+    public function demands(): HasMany
+    {
+        return $this->hasMany(Demand::class);
     }
 
     public function isAdmin():bool
