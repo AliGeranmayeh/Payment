@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Http\Requests\Auth\RegisterRequest;
 
 class AuthenticationController extends Controller
 {
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
         # code...
     }
