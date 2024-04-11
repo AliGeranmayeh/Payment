@@ -27,12 +27,26 @@ class AuthenticationController extends Controller
 
     public function logout()
     {
-        # code...
+        $isLoggedOut = $this->performeLogout();
+
+        return AuthenticationResponse::logout($isLoggedOut);
     }
 
 
     private function checkLoginCredentials(array $loginData)
     {
         return Auth::attempt($loginData) ? true : false;
+    }
+
+
+    private function performeLogout()
+    {
+        try {
+            auth()->user()->tokens()->delete();
+        }
+        catch (\Throwable $th) {
+            return false;
+        }
+        return true;
     }
 }

@@ -27,4 +27,12 @@ class AuthenticationResponse
             Response::HTTP_OK) :
             response()->json(['message' => 'Invalid Credentials'], Response::HTTP_UNAUTHORIZED);
     }
+
+
+    public static function logout(bool $loggedOutnFlag)
+    {
+        return $loggedOutnFlag ? 
+            response()->json(['message' => 'You have been successfully logged out'], Response::HTTP_OK) :
+            response()->json(['message' => 'Failed to logout user'], Response::HTTP_BAD_REQUEST);
+    }
 }
