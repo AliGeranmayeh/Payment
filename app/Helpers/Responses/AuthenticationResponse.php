@@ -1,15 +1,13 @@
 <?php
 
-
-
 namespace App\Helpers\Responses;
+
 use App\Models\User;
 use Illuminate\Http\Response;
+use App\Helpers\Responses\Interfaces\AuthenticationResponseInterface;
 
 
-
-
-class AuthenticationResponse
+class AuthenticationResponse implements AuthenticationResponseInterface
 {
     public static function register(User|null $user)
     {
