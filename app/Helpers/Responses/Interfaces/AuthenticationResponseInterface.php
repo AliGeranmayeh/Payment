@@ -2,6 +2,8 @@
 
 namespace App\Helpers\Responses\Interfaces;
 
+use App\Models\User;
+
 
 interface AuthenticationResponseInterface{
 
