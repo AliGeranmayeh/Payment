@@ -25,4 +25,10 @@ class DemandResponse
             response()->json(['demand' => new DemandResource($demand)], Response::HTTP_OK) :
             response()->json(['message' => 'Failed to record demand'], Response::HTTP_INTERNAL_SERVER_ERROR);
     }
+
+
+    public static function show(Demand $demands)
+    {
+        return response()->json(['demands' => new DemandResource($demands)], Response::HTTP_OK);
+    }
 }

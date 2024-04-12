@@ -26,6 +26,6 @@ class DemandsController extends Controller
 
     public function show(Demand $demand)
     {
-        # code...
+        return DemandResponse::show($demand);
     }
 }
