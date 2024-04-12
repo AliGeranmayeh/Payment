@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticationController;
 use App\Http\Controllers\UserSide\DemandsController;
 use App\Http\Controllers\AdminSide\DemandController;
+use App\Http\Controllers\AdminSide\ReplyController;
 
 
 Route::post('register', [AuthenticationController::class , 'register'])->name('register');
@@ -22,5 +23,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('demands/{demand}', [DemandController::class , 'show'])->name('demands.show');
         Route::post('demands/{demand}', [DemandController::class , 'changeStatus'])->name('demands.change.status');
         Route::get('demands/{demand}/download', [DemandController::class , 'download'])->name('demands.file.download');
+
+        Route::post('reply{demand}', [ReplyController::class])->name('reply.declined.demand');
     });
 });
