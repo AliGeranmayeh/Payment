@@ -30,9 +30,6 @@ class DemandRepository
 
     public static function all(bool $isAdmin = false)
     {
-        return Demand::query()->when(!$isAdmin,
-            fn($query) => $query->userDemand())
-            ->orderByDesc('created_at')
-            ->get();
+        return Demand::orderByDesc('created_at')->get();
     }
 }
