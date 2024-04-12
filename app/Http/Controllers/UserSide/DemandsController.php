@@ -12,7 +12,9 @@ class DemandsController extends Controller
 {
     public function index()
     {
-        # code...
+        $demands = DemandRepository::all();
+
+        return DemandResponse::index($demands);
     }
 
     public function store(CreateDemandRequest $request)

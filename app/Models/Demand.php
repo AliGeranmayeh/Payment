@@ -36,4 +36,9 @@ class Demand extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function scopeUserDemand($query)
+    {
+        return $query->where('user_id',auth()->user()->id);
+    }
 }
