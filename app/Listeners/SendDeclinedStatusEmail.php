@@ -5,6 +5,9 @@ namespace App\Listeners;
 use App\Events\DeclinedStatusEvent;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\Mail;
+use App\Models\User;
+use App\Mail\DeclinedDemandEmail;
 
 class SendDeclinedStatusEmail
 {
@@ -21,6 +24,7 @@ class SendDeclinedStatusEmail
      */
     public function handle(DeclinedStatusEvent $event): void
     {
-        //
+        $user = User::find($event->demand->user_id);
+        Mail::to($user->email)->send(new DeclinedDemandEmail($event->demand->description));
     }
 }

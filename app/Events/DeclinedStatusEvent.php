@@ -14,12 +14,14 @@ class DeclinedStatusEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+
+    public $demand;
     /**
      * Create a new event instance.
      */
-    public function __construct()
+    public function __construct($demand)
     {
-        //
+        $this->demand = $demand;
     }
 
     /**
