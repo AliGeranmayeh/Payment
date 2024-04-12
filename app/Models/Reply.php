@@ -10,7 +10,7 @@ class Reply extends Model
 {
     use HasFactory;
 
-    protected $filable = [
+    protected $fillable = [
         'text',
         'demand_id'
     ];

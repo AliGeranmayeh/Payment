@@ -24,6 +24,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('demands/{demand}', [DemandController::class , 'changeStatus'])->name('demands.change.status');
         Route::get('demands/{demand}/download', [DemandController::class , 'download'])->name('demands.file.download');
 
-        Route::post('reply{demand}', [ReplyController::class])->name('reply.declined.demand');
+        Route::post('reply/{demand}', ReplyController::class)->name('reply.declined.demand');
     });
 });
