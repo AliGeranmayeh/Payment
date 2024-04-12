@@ -9,14 +9,13 @@ use Illuminate\Support\Facades\Mail;
 use App\Models\User;
 use App\Mail\DeclinedDemandEmail;
 
-class SendDeclinedStatusEmail
+class SendDeclinedStatusEmail implements ShouldQueue
 {
     /**
      * Create the event listener.
      */
     public function __construct()
     {
-        //
     }
 
     /**

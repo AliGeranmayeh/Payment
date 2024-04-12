@@ -38,7 +38,10 @@ class DeclinedDemandEmail extends Mailable
     public function content(): Content
     {
         return new Content(
-           null , null  , "your demand with this description '$this->data' has been declined"
+            view: 'Mail.mail',
+            with: [
+                'data' => $this->data
+            ]
         );
     }
 

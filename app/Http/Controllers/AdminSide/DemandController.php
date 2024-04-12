@@ -35,7 +35,7 @@ class DemandController extends Controller
 
     private function dispatchEvent(Demand $demand,$status)
     {
-        if ($status == DemandStatusEnum::DECLINED ) {
+        if ($status == DemandStatusEnum::DECLINED->value) {
             DeclinedStatusEvent::dispatch($demand);
         } 
     }
