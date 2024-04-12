@@ -32,11 +32,9 @@ class DemandResponse implements DemandResponseInterface
         return response()->json(['demands' => new DemandResource($demands)], Response::HTTP_OK);
     }
 
-    public static function changeStatus(bool $isUpdatedFlag)
+    public static function changeStatus()
     {
-        return $isUpdatedFlag ? 
-            response()->json(['message' => 'demand status updated successfully'], Response::HTTP_OK) :
-            response()->json(['message' => 'Failed to update demand status'], Response::HTTP_INTERNAL_SERVER_ERROR);
+        return response()->json(['message' => 'demand status updated successfully'], Response::HTTP_OK);
     }
 
 

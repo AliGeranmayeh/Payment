@@ -2,8 +2,10 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Enums\DemandStatusEnum;
+use App\Helpers\DB\DemandRepository;
+use App\Rules\ValidUnpaidDemandRule;
+use Illuminate\Foundation\Http\FormRequest;
 
 class ChangeDemandStatusRequest extends FormRequest
 {
@@ -23,8 +25,16 @@ class ChangeDemandStatusRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'demand_ids' => ['required','array','min:1'],
+            'demand_ids.*' => ['required','integer', new ValidUnpaidDemandRule],
             'status' => ['required', 'string', 'in:' .$this->statusAllowedValues()]
         ];
+    }
+
+    protected function passedValidation()
+    {
+        $demands = DemandRepository::groupFindById($this->demand_ids);
+        $this->merge(['demands' => $demands]);
     }
 
     private function statusAllowedValues()

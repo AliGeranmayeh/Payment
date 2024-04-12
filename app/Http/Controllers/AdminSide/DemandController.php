@@ -24,12 +24,11 @@ class DemandController extends Controller
         return DemandResponse::show($demand);
     }
 
-    public function changeStatus(Demand $demand, ChangeDemandStatusRequest $request)
+    public function changeStatus(ChangeDemandStatusRequest $request)
     {
-        $isUpdated = DemandRepository::update($demand, $request->validated());
-        $this->dispatchEvent($demand,$request->status);
+        $this->updateDemandStatus($request->demands, $request->validated());
 
-        return DemandResponse::changeStatus($isUpdated);
+        return DemandResponse::changeStatus();
     }
 
 
@@ -38,6 +37,15 @@ class DemandController extends Controller
         DemandResponse::download(storage_path('app/'.$demand->file));
     }
 
+
+
+    private function updateDemandStatus($demands, array $data)
+    {
+        $demands->map(function($demand) use($data){
+            DemandRepository::update($demand, $data);
+            $this->dispatchEvent($demand,$data['status']);
+        });
+    }
 
     private function dispatchEvent(Demand $demand,$status)
     {
