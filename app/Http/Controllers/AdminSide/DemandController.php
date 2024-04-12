@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Demand;
 use App\Helpers\DB\DemandRepository;
 use App\Helpers\Responses\DemandResponse;
+use App\Http\Requests\ChangeDemandStatusRequest;
 
 class DemandController extends Controller
 {
@@ -21,7 +22,7 @@ class DemandController extends Controller
         return DemandResponse::show($demand);
     }
 
-    public function changeStatus(Demand $demand)
+    public function changeStatus(Demand $demand, ChangeDemandStatusRequest $request)
     {
         # code...
     }
