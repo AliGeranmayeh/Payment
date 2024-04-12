@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
+use App\Models\BankAccount;
 
 return [
 
@@ -184,5 +185,9 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
+
+
+
+    'company_shaba' => env('COMPANY_SHABA')
 
 ];
