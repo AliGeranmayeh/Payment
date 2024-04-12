@@ -18,7 +18,7 @@ class DemandController extends Controller
 
     public function show(Demand $demand)
     {
-        # code...
+        return DemandResponse::show($demand);
     }
 
     public function changeStatus(Demand $demand)
