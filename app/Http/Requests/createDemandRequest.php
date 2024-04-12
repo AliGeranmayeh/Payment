@@ -33,7 +33,7 @@ class CreateDemandRequest extends FormRequest
         ];
     }
 
-    public function passedValidation()
+    protected function passedValidation()
     {
         $this->merge(['user_id' => auth()->user()->id]);
 

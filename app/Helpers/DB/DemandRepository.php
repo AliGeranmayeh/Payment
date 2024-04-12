@@ -44,4 +44,9 @@ class DemandRepository
         }
         return true;
     }
+
+    public static function groupFindById(array $ids)
+    {
+        return Demand::query()->whereIn('id', $ids)->get() ?? null;
+    }
 }
