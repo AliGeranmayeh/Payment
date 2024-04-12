@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\UserSide;
 
-use App\Http\Controllers\Controller;
 use App\Models\Demand;
-use App\Http\Requests\createDemandRequest;
+use App\Helpers\DB\DemandRepository;
+use App\Http\Controllers\Controller;
+use App\Helpers\Responses\DemandResponse;
+use App\Http\Requests\CreateDemandRequest;
 
 class DemandsController extends Controller
 {
@@ -13,9 +15,11 @@ class DemandsController extends Controller
         # code...
     }
 
-    public function store(createDemandRequest $request)
+    public function store(CreateDemandRequest $request)
     {
-        # code...
+        $demand = DemandRepository::create($request);
+
+        return DemandResponse::store($demand);
     }
 
     public function show(Demand $demand)
