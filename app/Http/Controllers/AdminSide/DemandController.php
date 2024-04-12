@@ -24,6 +24,8 @@ class DemandController extends Controller
 
     public function changeStatus(Demand $demand, ChangeDemandStatusRequest $request)
     {
-        # code...
+        $isUpdated = DemandRepository::update($demand, $request->validated());
+
+        return DemandResponse::changeStatus($isUpdated);
     }
 }

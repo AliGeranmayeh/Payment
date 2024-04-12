@@ -32,4 +32,16 @@ class DemandRepository
     {
         return Demand::orderByDesc('created_at')->get();
     }
+
+
+    public static function update(Demand $demand, array $data)
+    {
+        try {
+            $demand->update($data);
+        }
+        catch (\Throwable $th) {
+            return false;
+        }
+        return true;
+    }
 }
