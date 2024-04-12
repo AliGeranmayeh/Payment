@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\AuthenticationController;
 use App\Http\Controllers\UserSide\DemandsController;
 use App\Http\Controllers\AdminSide\DemandController;
 use App\Http\Controllers\AdminSide\ReplyController;
+use App\Http\Controllers\AdminSide\PaymentController;
 
 
 Route::post('register', [AuthenticationController::class , 'register'])->name('register');
@@ -25,5 +26,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('demands/{demand}/download', [DemandController::class , 'download'])->name('demands.file.download');
 
         Route::post('reply/{demand}', ReplyController::class)->name('reply.declined.demand');
+
+        Route::post('pay', PaymentController::class)->name('pay.accepted.demand');
     });
 });
