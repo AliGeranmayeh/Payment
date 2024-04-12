@@ -7,6 +7,7 @@ use App\Enums\DemandStatusEnum;
 use App\Helpers\PaymentHelper;
 use App\Enums\PaymentStatus;
 use Illuminate\Support\Facades\Log;
+use App\Models\Demand;
 
 class PaymentSchedule extends Command
 {
