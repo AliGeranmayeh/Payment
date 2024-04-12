@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\UserSide;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Demand;
+use App\Http\Requests\createDemandRequest;
 
 class DemandsController extends Controller
 {
@@ -13,7 +13,7 @@ class DemandsController extends Controller
         # code...
     }
 
-    public function store(Request $request)
+    public function store(createDemandRequest $request)
     {
         # code...
     }
