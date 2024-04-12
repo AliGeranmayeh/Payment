@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticationController;
 use App\Http\Controllers\UserSide\DemandsController;
+use App\Http\Controllers\AdminSide\DemandController;
 
 
 Route::post('register', [AuthenticationController::class , 'register'])->name('register');
@@ -14,4 +15,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('demands', [DemandsController::class , 'index'])->name('demands.index');
     Route::post('demands', [DemandsController::class , 'store'])->name('demands.store');
     Route::get('demands/{demand}', [DemandsController::class , 'show'])->name('demands.show');
+
+
+    Route::prefix('admin/')->middleware(['admin'])->name('admin.')->group(function () {
+        Route::get('demands', [DemandController::class , 'index'])->name('demands.index');
+        Route::get('demands/{demand}', [DemandController::class , 'show'])->name('demands.show');
+        Route::post('demands/{demand}', [DemandController::class , 'changeStatus'])->name('demands.change.status');
+    });
 });
