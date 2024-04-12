@@ -23,7 +23,8 @@ class DemandResource extends JsonResource
             'shaba' => $this->shaba,
             'file' => $this->file,
             'status' => $this->status ?? DemandStatusEnum::PENDING,
-            'category' => $this->category->name
+            'category' => $this->category->name,
+            'reply' => $this->reply->text ?? null
         ];
     }
 }
