@@ -16,10 +16,10 @@ class ReplyController extends Controller
      */
     public function __invoke(CreateReplyRequest $request, Demand $demand)
     {
-        if ($demand->status==DemandStatusEnum::DECLINED->value) {
+        if ($demand->status == DemandStatusEnum::DECLINED) {
             $reply = ReplyRepository::create($request->text, $demand->id);
         }
 
-        return ReplyResponse::create($reply??null);
+        return ReplyResponse::create($reply ?? null);
     }
 }
