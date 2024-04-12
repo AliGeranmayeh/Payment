@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\NationalCodeMatches;
 use Illuminate\Support\Str;
 
-class createDemandRequest extends FormRequest
+class CreateDemandRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -38,7 +38,7 @@ class createDemandRequest extends FormRequest
         $this->merge(['user_id' => auth()->user()->id]);
 
         $filePath = $this->storeUploadedFile($this->file('file'));
-        $this->merge(['file' => $filePath]);
+        $this->merge(['file_path' => $filePath]);
     }
 
     private function storeUploadedFile($file)

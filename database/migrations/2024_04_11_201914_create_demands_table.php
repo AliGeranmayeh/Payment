@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignIdFor(Category::class)->constrained()->onDelete('cascade');
             $table->text('description');
             $table->integer('cost')->unsigned();
-            $table->string('shaba',26)->unique();
+            $table->string('shaba',26);
             $table->string('file');
             $table->enum('status',['pending','accepted','declined','paid'])->default('pending');
             $table->timestamps();
