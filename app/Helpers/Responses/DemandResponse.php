@@ -7,10 +7,11 @@ use App\Models\User;
 use Symfony\Component\HttpFoundation\Response;
 use App\Http\Resources\DemandResource;
 use App\Models\Demand;
+use App\Helpers\Responses\Interfaces\DemandResponseInterface;
 
 
 
-class DemandResponse
+class DemandResponse implements DemandResponseInterface
 
 {
 
