@@ -38,4 +38,10 @@ class DemandResponse implements DemandResponseInterface
             response()->json(['message' => 'demand status updated successfully'], Response::HTTP_OK) :
             response()->json(['message' => 'Failed to update demand status'], Response::HTTP_INTERNAL_SERVER_ERROR);
     }
+
+
+    public static function download(string $filePath)
+    {
+        return response()->download($filePath);
+    }
 }

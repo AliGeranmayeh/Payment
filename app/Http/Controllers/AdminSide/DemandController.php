@@ -33,6 +33,12 @@ class DemandController extends Controller
     }
 
 
+    public function download(Demand $demand)
+    {
+        DemandResponse::download(storage_path('app/'.$demand->file));
+    }
+
+
     private function dispatchEvent(Demand $demand,$status)
     {
         if ($status == DemandStatusEnum::DECLINED->value) {

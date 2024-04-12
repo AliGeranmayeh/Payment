@@ -21,5 +21,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('demands', [DemandController::class , 'index'])->name('demands.index');
         Route::get('demands/{demand}', [DemandController::class , 'show'])->name('demands.show');
         Route::post('demands/{demand}', [DemandController::class , 'changeStatus'])->name('demands.change.status');
+        Route::get('demands/{demand}/download', [DemandController::class , 'download'])->name('demands.file.download');
     });
 });
