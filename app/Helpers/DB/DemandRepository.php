@@ -49,4 +49,16 @@ class DemandRepository
     {
         return Demand::query()->whereIn('id', $ids)->get() ?? null;
     }
+
+
+    public static function find(array $data)
+    {
+        return Demand::query()
+            ->where(function ($query) use ($data) {
+            foreach ($data as $key => $value) {
+                $query->where($key, $value);
+            }
+        })
+            ->first() ?? null;
+    }
 }

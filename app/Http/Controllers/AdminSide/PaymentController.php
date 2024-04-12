@@ -8,6 +8,8 @@ use App\Enums\PaymentStatus;
 use App\Helpers\DB\BankAccountRepository;
 use App\Helpers\Responses\PaymentResponse;
 use App\Helpers\DB\BankRepository;
+use App\Helpers\DB\DemandRepository;
+use App\Enums\DemandStatusEnum;
 
 class PaymentController extends Controller
 {
@@ -17,10 +19,10 @@ class PaymentController extends Controller
     public function __invoke(PaymentRequest $request)
     {
         [$response, $message] = $this->paySelectedDemands($request->demands);
+        $this->updateDemandStatusToPaid($request->demands);
 
         return PaymentResponse::pay($response, $message);
     }
-
 
     private function paySelectedDemands(array $demands)
     {
@@ -57,5 +59,14 @@ class PaymentController extends Controller
     private function transferMoneyResponse($cost, $bankGeteway)
     {
         return "The amount of $cost$ has been settled via '$bankGeteway' gateway.";
+    }
+
+    private function updateDemandStatusToPaid(array $datas)
+    {
+        foreach ($datas as $data) {
+            DemandRepository::update(
+                DemandRepository::find(['id' => $data['id']]),
+                ['status' => DemandStatusEnum::PAID]);
+        }
     }
 }
