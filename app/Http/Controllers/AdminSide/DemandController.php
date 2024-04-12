@@ -7,6 +7,7 @@ use App\Models\Demand;
 use App\Helpers\DB\DemandRepository;
 use App\Helpers\Responses\DemandResponse;
 use App\Http\Requests\ChangeDemandStatusRequest;
+use App\Enums\DemandStatusEnum;
 
 class DemandController extends Controller
 {
@@ -25,7 +26,16 @@ class DemandController extends Controller
     public function changeStatus(Demand $demand, ChangeDemandStatusRequest $request)
     {
         $isUpdated = DemandRepository::update($demand, $request->validated());
+        $this->dispatchEvent($request->status);
 
         return DemandResponse::changeStatus($isUpdated);
+    }
+
+
+    private function dispatchEvent($status)
+    {
+        if ($status == DemandStatusEnum::DECLINED ) {
+            
+        } 
     }
 }
